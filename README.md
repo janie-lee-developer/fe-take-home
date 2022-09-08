@@ -4,17 +4,17 @@ Hello Hyperspace cadet!
 
 This is the take home test that we use to let you showcase your frontend skills. This README will provide some helpful links for you to use as you build out your solution as well as general guidance on what we are looking for.
 
+## Getting started
+
+1. First thing you should do is fork the fe-take-home repo. Once forked you can commit and push your changes into the forked version of the repo. 
+2. You will be utilizing the Hyperspace SDK/API to build out your solution. The docs can be found [here](https://docs.hyperspace.xyz/hype/developer-guide/overview). The main APIs you will be using will be found in this [section](https://docs.hyperspace.xyz/hype/developer-guide/api-calls)
+
 ## Running the frontend
 
 ```bash
 yarn install
 yarn start (app should come up on localhost:3000)
 ```
-
-## Getting started
-
-1. Make sure that you are on your own branch of this repo. Your branch name should be named `[your-name]-candidate`. You should **NOT** be commiting/pushing code directly to the `main` branch. So, double check that before pushing any changes.
-2. You will be utilizing the Hyperspace SDK/API to build out your solution. The docs can be found [here](https://docs.hyperspace.xyz/hype/developer-guide/overview). The main APIs you will be using will be found in this [section](https://docs.hyperspace.xyz/hype/developer-guide/api-calls)
 
 ## The codebase
 
@@ -60,8 +60,8 @@ Here are some ideas of what you can build if you want somewhere to start. Again 
 
 ## How to Submit
 
-1. Throughout your exercise you should be commiting and pushing code often to your branch. This makes it easier for us to review how you break up your building.
-2. Once you have your frontend finalized and are happy with your solution. Open up a Pull Request for your branch into `main` and tag the following people as reviewers `0xAlwaysDumpling`, `cieltan`, and `dre-draws`
+1. Throughout your exercise you should be commiting and pushing code often to your repo/branch. This makes it easier for us to review how you break up your building.
+2. Once you have your frontend finalized and are happy with your solution. Open up a Pull Request for your forked repo into the `fe-take-home` repo and tag the following people as reviewers `0xAlwaysDumpling`, `cieltan`, and `dre-draws`
 3. Sit back and relax. We will review your submition and will follow up with you to set up a time for us to go through your solution together!
 
 If you have any questions during your take home or are blocked from making progress for any reason please reach out to `adriano@hyperspace.xyz`.
