@@ -1,7 +1,5 @@
 // react
-import { useContext, useEffect, useState } from "react";
-// next
-import { GetServerSideProps } from "next";
+import { useContext, useEffect, useState, FunctionComponent } from "react";
 // chakra
 import { Grid, GridItem, GridProps } from "@chakra-ui/react";
 import {
@@ -11,17 +9,23 @@ import {
   Image,
   CircularProgress,
 } from "@chakra-ui/react";
-
 // api
 import { APIContext } from "../../context/APIContext";
-import { GetMarketplaceSnapshotsQuery } from "hyperspace-client-js";
+import { GetProjectStatsQuery } from "hyperspace-client-js";
 
-type MarketplaceSnapshots =
-  GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"]["market_place_snapshots"];
+type ProjectStatsType =
+  GetProjectStatsQuery["getProjectStats"]["project_stats"];
 
-const MarketPlace = (props: any) => {
+interface MarketPlaceProps {
+  projectStats?: ProjectStatsType;
+  children: React.ReactNode;
+}
+const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
+  projectStats,
+  children,
+}: MarketPlaceProps) => {
   const [loading, setLoading] = useState(true);
-  console.log(props.data);
+  console.log("this is from marketplace", projectStats);
 
   //   if (loading) {
   //     return <CircularProgress color="blue.400" isIndeterminate />;
@@ -60,4 +64,3 @@ export default MarketPlace;
 //       />
 //     </ListItem>
 //   ))} */
-//     }
