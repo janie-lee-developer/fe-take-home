@@ -1,5 +1,5 @@
 // react
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, FunctionComponent } from "react";
 // next
 import { GetServerSideProps } from "next";
 // components
@@ -20,9 +20,10 @@ import { Flex, useColorMode } from "@chakra-ui/react";
 type MarketplaceSnapshots =
   GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"]["market_place_snapshots"];
 
-type ProjectStats = GetProjectStatsQuery["getProjectStats"]["project_stats"];
+type ProjectStatsType =
+  GetProjectStatsQuery["getProjectStats"]["project_stats"];
 
-const Index = ({ data }: { data: ProjectStats }) => {
+const Index = ({ data }: { data: ProjectStatsType }) => {
   const { colorMode } = useColorMode();
 
   // API client for accessing Hyperspace data
@@ -30,7 +31,9 @@ const Index = ({ data }: { data: ProjectStats }) => {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJGRSBJbnRlcnZpZXciLCJuYW1lIjoiSHlwZXJzcGFjZSIsImlhdCI6MTUxNjIzOTAyMn0.HDfB97Y1pgQqQ6GshXsh5nz7fA1_ban9MTZDAbgobJk"
   );
   console.log("helloooooooo", data);
-
+  const marketPlaceProps = {
+    projectStats: data,
+  };
   return (
     <APIContext.Provider value={hyperClient}>
       <Container height="100vh">
@@ -45,7 +48,7 @@ const Index = ({ data }: { data: ProjectStats }) => {
 
         <DarkModeSwitch />
         <Flex w={"100%"} alignItems={"center"} px={4}>
-          <MarketPlace />
+          <MarketPlace children={undefined} {...marketPlaceProps} />
         </Flex>
       </Container>
     </APIContext.Provider>
@@ -146,6 +149,7 @@ export default Index;
 
 //   const url =
 //     "https://beta.api.solanalysis.com/rest/get-market-place-snapshots";
+
 //   const res = await fetch(url, {
 //     method: "POST",
 //     headers,
