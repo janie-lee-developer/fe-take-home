@@ -9,7 +9,10 @@ import HypeLogo from "../components/HypeLogo";
 import MarketPlace from "../components/market-place/MarketPlace";
 // api
 import { HyperspaceClient } from "hyperspace-client-js";
-import { GetMarketplaceSnapshotsQuery } from "hyperspace-client-js";
+import {
+  GetMarketplaceSnapshotsQuery,
+  GetProjectStatsQuery,
+} from "hyperspace-client-js";
 import { APIContext } from "../context/APIContext";
 // chakra
 import { Flex, useColorMode } from "@chakra-ui/react";
@@ -17,7 +20,9 @@ import { Flex, useColorMode } from "@chakra-ui/react";
 type MarketplaceSnapshots =
   GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"]["market_place_snapshots"];
 
-const Index = ({ data }: { data: MarketplaceSnapshots }) => {
+type ProjectStats = GetProjectStatsQuery["getProjectStats"]["project_stats"];
+
+const Index = ({ data }: { data: ProjectStats }) => {
   const { colorMode } = useColorMode();
 
   // API client for accessing Hyperspace data
@@ -25,6 +30,7 @@ const Index = ({ data }: { data: MarketplaceSnapshots }) => {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJGRSBJbnRlcnZpZXciLCJuYW1lIjoiSHlwZXJzcGFjZSIsImlhdCI6MTUxNjIzOTAyMn0.HDfB97Y1pgQqQ6GshXsh5nz7fA1_ban9MTZDAbgobJk"
   );
   console.log("helloooooooo", data);
+
   return (
     <APIContext.Provider value={hyperClient}>
       <Container height="100vh">
@@ -56,24 +62,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 
   const payload = JSON.stringify({
-    condition: {
-      project_ids: [
-        {
-          project_id: "degods",
-        },
-      ],
-    },
     order_by: {
-      field_name: "lowest_listing_block_timestamp",
+      field_name: "market_cap",
       sort_order: "DESC",
-    },
-    pagination_info: {
-      page_number: 1,
     },
   });
 
-  const url =
-    "https://beta.api.solanalysis.com/rest/get-market-place-snapshots";
+  const url = "https://beta.api.solanalysis.com/rest/get-project-stats";
+
   const res = await fetch(url, {
     method: "POST",
     headers,
@@ -124,8 +120,8 @@ export default Index;
 //   //   headers,
 //   //   body: payload,
 //   // });
-//   //---------------------------------------------------------------
 
+//   //--------------------------------------snapshots-------------------------
 //   const headers = {
 //     Authorization: key,
 //     "Content-Type": "application/json",
