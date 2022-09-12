@@ -1,7 +1,14 @@
 // react
 import { useContext, useEffect, useState, FunctionComponent } from "react";
 // chakra
-import { Grid, GridItem, GridProps } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  GridProps,
+  Flex,
+  Center,
+  Button,
+} from "@chakra-ui/react";
 import {
   ListItem,
   UnorderedList,
@@ -20,6 +27,7 @@ interface MarketPlaceProps {
   projectStats?: ProjectStatsType;
   children: React.ReactNode;
 }
+
 const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
   projectStats,
   children,
@@ -31,7 +39,14 @@ const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
   //     return <CircularProgress color="blue.400" isIndeterminate />;
   //   }
 
-  return <UnorderedList></UnorderedList>;
+  return (
+    <Flex>
+      <Center>Market Place</Center>
+      <Center>
+        <Button variant="outline">Click me</Button>
+      </Center>
+    </Flex>
+  );
 };
 
 export default MarketPlace;

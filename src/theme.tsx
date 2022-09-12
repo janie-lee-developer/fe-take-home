@@ -1,5 +1,6 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
-
+import { FlexStyles as Flex } from "./styles/flexStyles";
+import { ButtonStyles as Button } from "./styles/buttonStyles";
 const fonts = { mono: `'Menlo', monospace` };
 
 const config: ThemeConfig = {
@@ -28,9 +29,15 @@ const theme = extendTheme({
   },
   colors: {
     black: "#16161D",
+    white: "#F8F8FC",
+    hyperBlue: "#2563eb",
+  },
+  config,
+  components: {
+    Flex,
+    Button,
   },
   fonts,
-  config,
   styles: {
     global: {
       html: {

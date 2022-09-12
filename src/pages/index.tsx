@@ -40,7 +40,13 @@ const Index = ({ data }: { data: ProjectStatsType }) => {
           />
         </Flex>
         <DarkModeSwitch />
-        <Flex w={"100%"} alignItems={"center"} px={4}>
+        <Flex
+          w={"100%"}
+          h={"100vh"}
+          overflow={"auto"}
+          position={"relative"}
+          border={"1px solid red"}
+        >
           <MarketPlace children={undefined} {...marketPlaceProps} />
         </Flex>
       </Container>
