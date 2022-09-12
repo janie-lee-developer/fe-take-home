@@ -9,13 +9,12 @@ import {
   Center,
   Button,
   Box,
-} from "@chakra-ui/react";
-import {
   ListItem,
   UnorderedList,
   Text,
   Image,
   CircularProgress,
+  useColorMode,
 } from "@chakra-ui/react";
 // api
 import { APIContext } from "../../context/APIContext";
@@ -36,13 +35,19 @@ const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
   const [loading, setLoading] = useState(true);
   console.log("this is from marketplace", projectStats);
 
+  const { colorMode } = useColorMode();
   //   if (loading) {
   //     return <CircularProgress color="blue.400" isIndeterminate />;
   //   }
 
   return (
     <Box
-      bg={"rgba(0,0,0,0.5) url('/images/space.png')"}
+      // bg={"rgba(0,0,0,0.5) url('/images/space.png')"}
+      bg={
+        colorMode == "dark"
+          ? "rgba(0,0,0,0.5) url('/images/space.png')"
+          : "rgba(255,255,255,0.7) url('/images/space.png')"
+      }
       layerStyle={"fullPageScrollEffectSection"}
     >
       <Center>Market Place</Center>
