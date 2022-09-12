@@ -8,6 +8,7 @@ import {
   Flex,
   Center,
   Button,
+  Box,
 } from "@chakra-ui/react";
 import {
   ListItem,
@@ -40,12 +41,15 @@ const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
   //   }
 
   return (
-    <Flex>
+    <Box
+      bg={"rgba(0,0,0,0.5) url('/images/space.png')"}
+      layerStyle={"fullPageScrollEffectSection"}
+    >
       <Center>Market Place</Center>
       <Center>
         <Button variant="outline">Click me</Button>
       </Center>
-    </Flex>
+    </Box>
   );
 };
 

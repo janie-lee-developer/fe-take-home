@@ -1,5 +1,4 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
-import { FlexStyles as Flex } from "./styles/flexStyles";
 import { ButtonStyles as Button } from "./styles/buttonStyles";
 const fonts = { mono: `'Menlo', monospace` };
 
@@ -34,10 +33,19 @@ const theme = extendTheme({
   },
   config,
   components: {
-    Flex,
     Button,
   },
   fonts,
+  layerStyles: {
+    fullPageScrollEffectSection: {
+      position: "relative",
+      width: "100%",
+      height: "100%",
+      backgroundBlendMode: "multiply",
+      backgroundSize: "cover",
+      backgroundAttachment: "fixed",
+    },
+  },
   styles: {
     global: {
       html: {
