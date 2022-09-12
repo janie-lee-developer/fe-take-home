@@ -7,12 +7,13 @@ import { Container } from "../components/Container";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import HypeLogo from "../components/HypeLogo";
 import MarketPlace from "../components/market-place/MarketPlace";
+import CreateNft from "../components/create-nft/CreateNft";
 // api
 import { HyperspaceClient } from "hyperspace-client-js";
 import { GetProjectStatsQuery } from "hyperspace-client-js";
 import { APIContext } from "../context/APIContext";
 // chakra
-import { Flex, useColorMode } from "@chakra-ui/react";
+import { Flex, useColorMode, Box } from "@chakra-ui/react";
 
 type ProjectStatsType =
   GetProjectStatsQuery["getProjectStats"]["project_stats"];
@@ -40,9 +41,16 @@ const Index = ({ data }: { data: ProjectStatsType }) => {
           />
         </Flex>
         <DarkModeSwitch />
-        <Flex w={"100%"} alignItems={"center"} px={4}>
+        <Box
+          w={"100%"}
+          h={"100vh"}
+          overflow={"auto"}
+          position={"relative"}
+          border={"1px solid red"}
+        >
           <MarketPlace children={undefined} {...marketPlaceProps} />
-        </Flex>
+          <CreateNft children={undefined} {...marketPlaceProps} />
+        </Box>
       </Container>
     </APIContext.Provider>
   );

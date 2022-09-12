@@ -1,13 +1,20 @@
 // react
 import { useContext, useEffect, useState, FunctionComponent } from "react";
 // chakra
-import { Grid, GridItem, GridProps } from "@chakra-ui/react";
 import {
+  Grid,
+  GridItem,
+  GridProps,
+  Flex,
+  Center,
+  Button,
+  Box,
   ListItem,
   UnorderedList,
   Text,
   Image,
   CircularProgress,
+  useColorMode,
 } from "@chakra-ui/react";
 // api
 import { APIContext } from "../../context/APIContext";
@@ -20,6 +27,7 @@ interface MarketPlaceProps {
   projectStats?: ProjectStatsType;
   children: React.ReactNode;
 }
+
 const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
   projectStats,
   children,
@@ -27,11 +35,27 @@ const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
   const [loading, setLoading] = useState(true);
   console.log("this is from marketplace", projectStats);
 
+  const { colorMode } = useColorMode();
   //   if (loading) {
   //     return <CircularProgress color="blue.400" isIndeterminate />;
   //   }
 
-  return <UnorderedList></UnorderedList>;
+  return (
+    <Box
+      // bg={"rgba(0,0,0,0.5) url('/images/space.png')"}
+      bg={
+        colorMode == "dark"
+          ? "rgba(0,0,0,0.5) url('/images/space.png')"
+          : "rgba(255,255,255,0.7) url('/images/space.png')"
+      }
+      layerStyle={"fullPageScrollEffectSection"}
+    >
+      <Center>Market Place</Center>
+      <Center>
+        <Button variant="outline">Click me</Button>
+      </Center>
+    </Box>
+  );
 };
 
 export default MarketPlace;

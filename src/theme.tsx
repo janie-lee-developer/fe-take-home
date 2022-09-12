@@ -1,5 +1,5 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
-
+import { ButtonStyles as Button } from "./styles/buttonStyles";
 const fonts = { mono: `'Menlo', monospace` };
 
 const config: ThemeConfig = {
@@ -28,9 +28,24 @@ const theme = extendTheme({
   },
   colors: {
     black: "#16161D",
+    white: "#F8F8FC",
+    hyperBlue: "#2563eb",
+  },
+  config,
+  components: {
+    Button,
   },
   fonts,
-  config,
+  layerStyles: {
+    fullPageScrollEffectSection: {
+      position: "relative",
+      width: "100%",
+      height: "100%",
+      backgroundBlendMode: "multiply",
+      backgroundSize: "cover",
+      backgroundAttachment: "fixed",
+    },
+  },
   styles: {
     global: {
       html: {
