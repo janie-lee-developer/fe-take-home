@@ -37,7 +37,6 @@ const MarketList: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
           colorMode == "dark" ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)"
         }
       >
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
         <Thead>
           <Tr>
             <Th>To convert</Th>
@@ -75,3 +74,32 @@ const MarketList: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
 };
 
 export default MarketList;
+
+//   const hyperClient = useContext(APIContext);
+//   const [nfts, setNfts] = useState<MarketplaceSnapshots>([]);
+
+//   useEffect(() => {
+//     const getData = async () => {
+//       const {
+//         getMarketPlaceSnapshots: { market_place_snapshots },
+//       } = await hyperClient!.getMarketplaceSnapshot({});
+//       setNfts(market_place_snapshots);
+//       setLoading(false);
+//     };
+
+//     getData();
+//   }, []);
+
+//     {
+//       /* {nfts?.map(({ project_image, name }) => (
+//     <ListItem>
+//       <Text>{name}</Text>
+//       <Image
+//         boxSize="100px"
+//         src={
+//           project_image ??
+//           "https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg"
+//         }
+//       />
+//     </ListItem>
+//   ))} */

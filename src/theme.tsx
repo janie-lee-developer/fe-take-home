@@ -1,4 +1,4 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { extendTheme, theme, type ThemeConfig } from "@chakra-ui/react";
 import { ButtonStyles as Button } from "./styles/buttonStyles";
 
 const fonts = { mono: `'Menlo', monospace` };

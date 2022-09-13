@@ -21,7 +21,6 @@ import {
 import MarketList from "./MarketList";
 import IntroSection from "./IntroSection";
 // api
-import { APIContext } from "../../context/APIContext";
 import { GetProjectStatsQuery } from "hyperspace-client-js";
 
 interface MarketPlaceProps {
@@ -29,13 +28,8 @@ interface MarketPlaceProps {
 }
 
 const MarketPlace: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
-  const [loading, setLoading] = useState(true);
   console.log("this is from marketplace", projectStats);
-
   const { colorMode } = useColorMode();
-  //   if (loading) {
-  //     return <CircularProgress color="blue.400" isIndeterminate />;
-  //   }
 
   return (
     <Box
@@ -46,7 +40,12 @@ const MarketPlace: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
       }
       layerStyle={"fullPageScrollEffectSection"}
     >
-      <SimpleGrid column={[1, 2]}>
+      <SimpleGrid
+        columns={[1, 2]}
+        padding={["3%", "5%"]}
+        spacing={"15px"}
+        h={"100%"}
+      >
         <MarketList projectStats={projectStats} />
         <IntroSection />
       </SimpleGrid>
@@ -55,32 +54,3 @@ const MarketPlace: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
 };
 
 export default MarketPlace;
-
-//   const hyperClient = useContext(APIContext);
-//   const [nfts, setNfts] = useState<MarketplaceSnapshots>([]);
-
-//   useEffect(() => {
-//     const getData = async () => {
-//       const {
-//         getMarketPlaceSnapshots: { market_place_snapshots },
-//       } = await hyperClient!.getMarketplaceSnapshot({});
-//       setNfts(market_place_snapshots);
-//       setLoading(false);
-//     };
-
-//     getData();
-//   }, []);
-
-//     {
-//       /* {nfts?.map(({ project_image, name }) => (
-//     <ListItem>
-//       <Text>{name}</Text>
-//       <Image
-//         boxSize="100px"
-//         src={
-//           project_image ??
-//           "https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg"
-//         }
-//       />
-//     </ListItem>
-//   ))} */
