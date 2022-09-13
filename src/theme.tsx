@@ -1,5 +1,6 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 import { ButtonStyles as Button } from "./styles/buttonStyles";
+
 const fonts = { mono: `'Menlo', monospace` };
 
 const config: ThemeConfig = {
@@ -7,7 +8,7 @@ const config: ThemeConfig = {
   useSystemColorMode: true,
 };
 
-const theme = extendTheme({
+const CustomTheme = extendTheme({
   breakpoints: {
     sm: "40em",
     md: "52em",
@@ -44,6 +45,7 @@ const theme = extendTheme({
       backgroundBlendMode: "multiply",
       backgroundSize: "cover",
       backgroundAttachment: "fixed",
+      scrollSnapAlign: "start",
     },
   },
   styles: {
@@ -70,10 +72,4 @@ const theme = extendTheme({
   },
 });
 
-export default theme;
-
-// siteBackground: {
-//         default:
-//           "linear-gradient(180deg, rgba(152, 164, 230, 0.2) 0%, rgba(217, 217, 255, 0) 31.09%),linear-gradient(0deg, #F8F8FC, #F8F8FC)",
-//         _dark: "linear-gradient(180deg, #141624 0%, #090A10 1%)",
-//       },
+export default CustomTheme;

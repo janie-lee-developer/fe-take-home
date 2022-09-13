@@ -3,6 +3,7 @@ import { useContext, useEffect, useState, FunctionComponent } from "react";
 // chakra
 import {
   Grid,
+  SimpleGrid,
   GridItem,
   GridProps,
   Flex,
@@ -16,22 +17,18 @@ import {
   CircularProgress,
   useColorMode,
 } from "@chakra-ui/react";
+// components
+import MarketList from "./MarketList";
+import IntroSection from "./IntroSection";
 // api
 import { APIContext } from "../../context/APIContext";
 import { GetProjectStatsQuery } from "hyperspace-client-js";
 
-type ProjectStatsType =
-  GetProjectStatsQuery["getProjectStats"]["project_stats"];
-
 interface MarketPlaceProps {
-  projectStats?: ProjectStatsType;
-  children: React.ReactNode;
+  projectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
 }
 
-const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
-  projectStats,
-  children,
-}: MarketPlaceProps) => {
+const MarketPlace: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
   const [loading, setLoading] = useState(true);
   console.log("this is from marketplace", projectStats);
 
@@ -42,18 +39,17 @@ const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
 
   return (
     <Box
-      // bg={"rgba(0,0,0,0.5) url('/images/space.png')"}
       bg={
         colorMode == "dark"
-          ? "rgba(0,0,0,0.5) url('/images/space.png')"
-          : "rgba(255,255,255,0.7) url('/images/space.png')"
+          ? "rgba(0,0,0,0.5) url('/images/dark_galaxy_1.png')"
+          : "rgba(255,255,255,0.7) url('/images/light_galaxy_1.png')"
       }
       layerStyle={"fullPageScrollEffectSection"}
     >
-      <Center>Market Place</Center>
-      <Center>
-        <Button variant="outline">Click me</Button>
-      </Center>
+      <SimpleGrid column={[1, 2]}>
+        <MarketList projectStats={projectStats} />
+        <IntroSection />
+      </SimpleGrid>
     </Box>
   );
 };

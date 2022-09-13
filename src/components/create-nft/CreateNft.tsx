@@ -18,28 +18,17 @@ import {
   chakra,
 } from "@chakra-ui/react";
 // api
-import { GetProjectStatsQuery } from "hyperspace-client-js";
+import { GetMarketplaceSnapshotsQuery } from "hyperspace-client-js";
 // three.js
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import SceneInit from "../../../public/SceneInit";
-
 import { Website3DDemo } from "../../../public/3dInit";
 
-type ProjectStatsType =
-  GetProjectStatsQuery["getProjectStats"]["project_stats"];
-
 interface CreateNftProps {
-  projectStats?: ProjectStatsType;
-  children: React.ReactNode;
+  snapShots: GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"]["market_place_snapshots"];
 }
 
-const CreateNft: FunctionComponent<CreateNftProps> = (
-  { projectStats, children }: CreateNftProps,
-  props: BoxProps
-) => {
+const CreateNft: FunctionComponent<CreateNftProps> = ({ snapShots }) => {
   const [loading, setLoading] = useState(true);
-  console.log("this is from create NFT page", projectStats);
+  console.log("this is from create NFT page", snapShots);
 
   let _APP: any = null;
   useEffect(() => {
@@ -54,8 +43,8 @@ const CreateNft: FunctionComponent<CreateNftProps> = (
   }, []);
 
   return (
-    <Box layerStyle={"fullPageScrollEffectSection"} {...props}>
-      <Center>Create your NFT</Center>
+    <Box layerStyle={"fullPageScrollEffectSection"}>
+      <Center>Create your NFT: Convert digital files into an NFT</Center>
       <Center>
         <Button variant="outline">Click me</Button>
       </Center>
