@@ -17,7 +17,7 @@ import {
 import { Flex, useColorMode, Box } from "@chakra-ui/react";
 
 interface IndexProps {
-  dataProjectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+  dataProjectStats: GetProjectStatsQuery["getProjectStats"];
   dataSnapShots: GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"]["market_place_snapshots"];
 }
 

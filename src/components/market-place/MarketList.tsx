@@ -21,7 +21,7 @@ import {
 // api
 import { GetProjectStatsQuery } from "hyperspace-client-js";
 
-type ProjectStats = GetProjectStatsQuery["getProjectStats"]["project_stats"];
+type ProjectStats = GetProjectStatsQuery["getProjectStats"];
 interface MarketListProps {
   projectStats: ProjectStats;
 }
@@ -31,6 +31,9 @@ const MarketList = ({ projectStats }: MarketListProps) => {
 
   console.log("this is from marketplace-janie", projectStats?.project_stats);
 
+  if (projectStats?.project_stats) {
+    console.log(projectStats.project_stats[0].project_id);
+  }
   return (
     <TableContainer>
       <Table
