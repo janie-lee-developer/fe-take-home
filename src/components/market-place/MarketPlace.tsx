@@ -22,12 +22,17 @@ import MarketList from "./MarketList";
 import IntroSection from "./IntroSection";
 // api
 import { GetProjectStatsQuery } from "hyperspace-client-js";
-
+//
+type ProjectStats = GetProjectStatsQuery["getProjectStats"];
 interface MarketPlaceProps {
-  projectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+  projectStats: ProjectStats;
 }
+//
+// interface MarketPlaceProps {
+//   projectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+// }
 
-const MarketPlace: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
+const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
   console.log("this is from marketplace", projectStats);
   const { colorMode } = useColorMode();
 
