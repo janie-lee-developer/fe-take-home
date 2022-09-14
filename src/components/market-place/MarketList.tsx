@@ -20,20 +20,40 @@ import {
 } from "@chakra-ui/react";
 // api
 import { GetProjectStatsQuery } from "hyperspace-client-js";
+import {
+  GetProjectStatsOutput,
+  Project,
+  ProjectStat,
+} from "hyperspace-client-js/dist/sdk";
 
-type ProjectStats = GetProjectStatsQuery["getProjectStats"];
+// type ProjectStats = GetProjectStatsQuery["getProjectStats"]["project_stats"];
+// interface MarketListProps {
+//   projectStats: ProjectStats;
+// }
+
 interface MarketListProps {
-  projectStats: ProjectStats;
+  projectStats: GetProjectStatsOutput;
+}
+
+interface M {
+  s: Project;
 }
 
 const MarketList = ({ projectStats }: MarketListProps) => {
   const { colorMode } = useColorMode();
+  const [stats, setStats] = useState<any[]>([]);
+  let st: any[] = [];
 
-  console.log("this is from marketplace-janie", projectStats?.project_stats);
+  useEffect(() => {
+    if (projectStats?.project_stats) {
+      console.log(projectStats.project_stats[0].project_id);
+      setStats(projectStats.project_stats);
+      // console.log("length is", stats.length);
+      // st = projectStats.project_stats;
+      // console.log("sttttt", st);
+    }
+  }, []);
 
-  if (projectStats?.project_stats) {
-    console.log(projectStats.project_stats[0].project_id);
-  }
   return (
     <TableContainer>
       <Table
@@ -50,7 +70,32 @@ const MarketList = ({ projectStats }: MarketListProps) => {
             <Th isNumeric>Avg 24h %</Th>
           </Tr>
         </Thead>
-        <Tbody></Tbody>
+        <Tbody>
+          {stats[0] ? (
+            stats.map(
+              ({ project_id, average_price, project: { img_url } }, inx) => {
+                return (
+                  <Tr key={inx}>
+                    <Td>{inx + 1}</Td>
+                    <Td>{project_id}</Td>
+                    <Td>{average_price}</Td>
+                    <Td>
+                      <Image
+                        boxSize="15px"
+                        src={
+                          img_url ??
+                          "https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg"
+                        }
+                      />
+                    </Td>
+                  </Tr>
+                );
+              }
+            )
+          ) : (
+            <Tr></Tr>
+          )}
+        </Tbody>
       </Table>
     </TableContainer>
   );
@@ -122,3 +167,8 @@ export default MarketList;
 
 //
 //# , [project.img_url, project.display_name, supply, badge"trade"] ,avg price, avg24h%
+
+// console.log(
+//   "this is from marketplace-janieeeeee",
+//   projectStats?.project_stats
+// );
