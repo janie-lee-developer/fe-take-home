@@ -22,12 +22,13 @@ import {
 import { GetProjectStatsQuery } from "hyperspace-client-js";
 
 interface MarketPlaceProps {
-  projectStats?: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+  projectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
 }
 
 const MarketList: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
   const { colorMode } = useColorMode();
-  console.log("this is from marketplace", projectStats);
+
+  console.log("this is from marketplace-janie", projectStats);
 
   return (
     <TableContainer>
@@ -39,41 +40,25 @@ const MarketList: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
       >
         <Thead>
           <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
+            <Th>#</Th>
+            <Th>Name</Th>
+            <Th isNumeric>Avg Price</Th>
+            <Th isNumeric>Avg 24h %</Th>
           </Tr>
         </Thead>
-        <Tbody>
-          <Tr>
-            <Td>inches</Td>
-            <Td>millimetres (mm)</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>feet</Td>
-            <Td>centimetres (cm)</Td>
-            <Td isNumeric>30.48</Td>
-          </Tr>
-          <Tr>
-            <Td>yards</Td>
-            <Td>metres (m)</Td>
-            <Td isNumeric>0.91444</Td>
-          </Tr>
-        </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
-          </Tr>
-        </Tfoot>
+        <Tbody></Tbody>
       </Table>
     </TableContainer>
   );
 };
 
 export default MarketList;
+
+// <Tr>
+//             <Td>inches</Td>
+//             <Td>millimetres (mm)</Td>
+//             <Td isNumeric>25.4</Td>
+//           </Tr>
 
 //   const hyperClient = useContext(APIContext);
 //   const [nfts, setNfts] = useState<MarketplaceSnapshots>([]);
@@ -103,3 +88,33 @@ export default MarketList;
 //       />
 //     </ListItem>
 //   ))} */
+
+// average_price
+// :
+// 413.465837364
+// average_price_1day_change
+// :
+// -0.0301
+
+// project.display_name
+// project.img_url
+// :
+//supply
+
+//# , [project.img_url, project.display_name, supply, badge"trade"] ,avg price, avg24h%
+
+//   {projectStats.project_stats?.map(({ project_stats: {} }) => (
+
+//   <Text>{name}</Text>
+//   <Image
+//     boxSize="100px"
+//     src={
+//       project_image ??
+//       "https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg"
+//     }
+//   />
+
+// ))}
+
+//
+//# , [project.img_url, project.display_name, supply, badge"trade"] ,avg price, avg24h%
