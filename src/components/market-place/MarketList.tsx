@@ -21,14 +21,15 @@ import {
 // api
 import { GetProjectStatsQuery } from "hyperspace-client-js";
 
-interface MarketPlaceProps {
-  projectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+type ProjectStats = GetProjectStatsQuery["getProjectStats"]["project_stats"];
+interface MarketListProps {
+  projectStats: ProjectStats;
 }
 
-const MarketList: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
+const MarketList = ({ projectStats }: MarketListProps) => {
   const { colorMode } = useColorMode();
 
-  console.log("this is from marketplace-janie", projectStats);
+  console.log("this is from marketplace-janie", projectStats?.project_stats);
 
   return (
     <TableContainer>
