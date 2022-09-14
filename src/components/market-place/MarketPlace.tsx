@@ -3,6 +3,7 @@ import { useContext, useEffect, useState, FunctionComponent } from "react";
 // chakra
 import {
   Grid,
+  SimpleGrid,
   GridItem,
   GridProps,
   Flex,
@@ -16,75 +17,40 @@ import {
   CircularProgress,
   useColorMode,
 } from "@chakra-ui/react";
+// components
+import MarketList from "./MarketList";
+import IntroSection from "./IntroSection";
 // api
-import { APIContext } from "../../context/APIContext";
 import { GetProjectStatsQuery } from "hyperspace-client-js";
 
-type ProjectStatsType =
-  GetProjectStatsQuery["getProjectStats"]["project_stats"];
-
 interface MarketPlaceProps {
-  projectStats?: ProjectStatsType;
-  children: React.ReactNode;
+  projectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
 }
 
-const MarketPlace: FunctionComponent<MarketPlaceProps> = ({
-  projectStats,
-  children,
-}: MarketPlaceProps) => {
-  const [loading, setLoading] = useState(true);
+const MarketPlace: FunctionComponent<MarketPlaceProps> = ({ projectStats }) => {
   console.log("this is from marketplace", projectStats);
-
   const { colorMode } = useColorMode();
-  //   if (loading) {
-  //     return <CircularProgress color="blue.400" isIndeterminate />;
-  //   }
 
   return (
     <Box
-      // bg={"rgba(0,0,0,0.5) url('/images/space.png')"}
       bg={
         colorMode == "dark"
-          ? "rgba(0,0,0,0.5) url('/images/space.png')"
-          : "rgba(255,255,255,0.7) url('/images/space.png')"
+          ? "rgba(0,0,0,0.5) url('/images/dark_galaxy_1.png')"
+          : "rgba(255,255,255,0.7) url('/images/light_galaxy_1.png')"
       }
       layerStyle={"fullPageScrollEffectSection"}
     >
-      <Center>Market Place</Center>
-      <Center>
-        <Button variant="outline">Click me</Button>
-      </Center>
+      <SimpleGrid
+        columns={[1, 2]}
+        padding={["3%", "5%"]}
+        spacing={"15px"}
+        h={"100%"}
+      >
+        <MarketList projectStats={projectStats} />
+        <IntroSection />
+      </SimpleGrid>
     </Box>
   );
 };
 
 export default MarketPlace;
-
-//   const hyperClient = useContext(APIContext);
-//   const [nfts, setNfts] = useState<MarketplaceSnapshots>([]);
-
-//   useEffect(() => {
-//     const getData = async () => {
-//       const {
-//         getMarketPlaceSnapshots: { market_place_snapshots },
-//       } = await hyperClient!.getMarketplaceSnapshot({});
-//       setNfts(market_place_snapshots);
-//       setLoading(false);
-//     };
-
-//     getData();
-//   }, []);
-
-//     {
-//       /* {nfts?.map(({ project_image, name }) => (
-//     <ListItem>
-//       <Text>{name}</Text>
-//       <Image
-//         boxSize="100px"
-//         src={
-//           project_image ??
-//           "https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg"
-//         }
-//       />
-//     </ListItem>
-//   ))} */

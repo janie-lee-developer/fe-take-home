@@ -16,3 +16,6 @@ export const Container = (props: FlexProps) => {
     />
   );
 };
+
+// Container is NOT a Chakra UI component.
+//Instead of using useStyleConfig(), styles and (flex)children array are passed and fined as FlexProps?
