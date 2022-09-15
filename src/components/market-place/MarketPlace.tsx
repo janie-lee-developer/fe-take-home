@@ -4,7 +4,16 @@ import IntroSection from "./IntroSection";
 // api
 import { GetProjectStatsOutput } from "hyperspace-client-js/dist/sdk";
 // chakra
-import { SimpleGrid, Box, useColorMode } from "@chakra-ui/react";
+import {
+  SimpleGrid,
+  Box,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabPanel,
+  Tab,
+  useColorMode,
+} from "@chakra-ui/react";
 
 interface MarketPlaceProps {
   projectStats: GetProjectStatsOutput;
@@ -28,7 +37,20 @@ const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
         spacing={"15px"}
         h={"90%"}
       >
-        <MarketList projectStats={projectStats} />
+        <Tabs align={"center"} isFitted={true} variant={"enclosed-colored"}>
+          <TabList>
+            <Tab>Popular Collection</Tab>
+            <Tab>NFT Leaderboard</Tab>
+            <Tab>Top Wallets</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <MarketList projectStats={projectStats} />
+            </TabPanel>
+            <TabPanel>TBA</TabPanel>
+            <TabPanel>TBA</TabPanel>
+          </TabPanels>
+        </Tabs>
         <IntroSection />
       </SimpleGrid>
     </Box>
