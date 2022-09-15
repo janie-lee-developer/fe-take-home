@@ -28,7 +28,7 @@ const Index: FunctionComponent<IndexProps> = ({
   const { colorMode } = useColorMode();
 
   return (
-    <Container height="100vh" border="pink 3px solid">
+    <Container height="100vh">
       <Flex w={"100%"} h={"80px"} alignItems={"center"} px={4}>
         <HypeLogo
           fillColor={colorMode === "dark" ? "white" : "black"}
@@ -64,6 +64,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
     order_by: {
       field_name: "market_cap",
       sort_order: "DESC",
+    },
+    pagination_info: {
+      page_number: 1,
+      page_size: 6,
     },
   });
 
