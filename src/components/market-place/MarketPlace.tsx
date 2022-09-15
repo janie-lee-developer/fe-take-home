@@ -1,39 +1,16 @@
-// react
-import { useContext, useEffect, useState, FunctionComponent } from "react";
-// chakra
-import {
-  Grid,
-  SimpleGrid,
-  GridItem,
-  GridProps,
-  Flex,
-  Center,
-  Button,
-  Box,
-  ListItem,
-  UnorderedList,
-  Text,
-  Image,
-  CircularProgress,
-  useColorMode,
-} from "@chakra-ui/react";
 // components
 import MarketList from "./MarketList";
 import IntroSection from "./IntroSection";
 // api
-import { GetProjectStatsQuery } from "hyperspace-client-js";
-//
-type ProjectStats = GetProjectStatsQuery["getProjectStats"];
+import { GetProjectStatsOutput } from "hyperspace-client-js/dist/sdk";
+// chakra
+import { SimpleGrid, Box, useColorMode } from "@chakra-ui/react";
+
 interface MarketPlaceProps {
-  projectStats: ProjectStats;
+  projectStats: GetProjectStatsOutput;
 }
-//
-// interface MarketPlaceProps {
-//   projectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
-// }
 
 const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
-  console.log("this is from marketplace", projectStats);
   const { colorMode } = useColorMode();
 
   return (
@@ -46,10 +23,10 @@ const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
       layerStyle={"fullPageScrollEffectSection"}
     >
       <SimpleGrid
-        columns={[1, 2]}
-        padding={["3%", "5%"]}
+        columns={[1, null, 2]}
+        padding={["0", null, null, "3%"]}
         spacing={"15px"}
-        h={"100%"}
+        h={"90%"}
       >
         <MarketList projectStats={projectStats} />
         <IntroSection />

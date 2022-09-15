@@ -1,5 +1,6 @@
 import { extendTheme, theme, type ThemeConfig } from "@chakra-ui/react";
-import { ButtonStyles as Button } from "./styles/buttonStyles";
+import { ButtonStyles as Button } from "./styles/buttonStyle";
+import { ThumbNail } from "./styles/thumbNailStyle";
 
 const fonts = { mono: `'Menlo', monospace` };
 
@@ -10,8 +11,9 @@ const config: ThemeConfig = {
 
 const CustomTheme = extendTheme({
   breakpoints: {
-    sm: "40em",
-    md: "52em",
+    xs: "25em",
+    sm: "46em",
+    md: "56em",
     lg: "64em",
     xl: "80em",
   },
@@ -31,10 +33,14 @@ const CustomTheme = extendTheme({
     black: "#16161D",
     white: "#F8F8FC",
     hyperBlue: "#2563eb",
+    charcoal: "#484a4a",
+    cloud: "#c2c2c2",
+    mint: "#ace6cf",
   },
   config,
   components: {
     Button,
+    ThumbNail,
   },
   fonts,
   layerStyles: {
