@@ -2,11 +2,6 @@ import { useEffect, useState, FunctionComponent } from "react";
 // components
 import MarketList from "./MarketList";
 import IntroSection from "./IntroSection";
-// api
-import {
-  GetProjectStatsOutput,
-  GetProjectStatsQuery,
-} from "hyperspace-client-js/dist/sdk";
 // chakra
 import {
   SimpleGrid,
@@ -22,42 +17,60 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+// api
+import {
+  GetProjectStatsOutput,
+  GetProjectStatsQuery,
+  GetWalletStatsQuery,
+} from "hyperspace-client-js/dist/sdk";
 import { ProjectStat } from "hyperspace-client-js/dist/sdk";
 
 interface MarketPlaceProps {
   projectStats: GetProjectStatsOutput;
-  top6Leaders: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+  project: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+  walletStats: GetWalletStatsQuery["getWalletStats"];
+  popularStats: GetProjectStatsQuery["getProjectStats"];
 }
 
 interface sortProps {
   sorted: GetProjectStatsQuery["getProjectStats"]["project_stats"];
 }
 
-const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
+const MarketPlace = ({
+  projectStats,
+  walletStats,
+  popularStats,
+}: MarketPlaceProps) => {
   const { colorMode } = useColorMode();
   const [top6LeaderBoard, setTop6LeaderBoard] = useState<
-    MarketPlaceProps["top6Leaders"]
+    MarketPlaceProps["project"]
   >([]);
+  // const [sorted1DVolume, setsorted1DVolume] = useState<
+  //   MarketPlaceProps["project"]
+  // >([]);
   const [sorted1DVolume, setsorted1DVolume] = useState<
-    MarketPlaceProps["top6Leaders"]
+    MarketPlaceProps["project"]
   >([]);
   console.log("market place page return: ", projectStats);
-
+  console.log("walleeettttt", walletStats);
   useEffect(() => {
     if (projectStats?.project_stats) {
       setTop6LeaderBoard(projectStats.project_stats.slice(0, 6));
-      const stats: sortProps["sorted"] = projectStats.project_stats;
-      if (stats && stats[0]) {
-        const sorted = stats
-          .sort((a, b) => {
-            if (a.volume_1day && b.volume_1day) {
-              return b.volume_1day - a.volume_1day;
-            }
-            return 0;
-          })
-          .slice(0, 6);
-        setsorted1DVolume(sorted);
-      }
+
+      // const stats: sortProps["sorted"] = projectStats.project_stats;
+      // if (stats && stats[0]) {
+      //   const sorted = stats
+      //     .sort((a, b) => {
+      //       if (a.volume_1day && b.volume_1day) {
+      //         return b.volume_1day - a.volume_1day;
+      //       }
+      //       return 0;
+      //     })
+      //     .slice(0, 6);
+      //   setsorted1DVolume(sorted);
+      // }
+
+      setsorted1DVolume(popularStats.project_stats?.slice(0, 6));
     }
   }, []);
 
@@ -85,6 +98,7 @@ const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
           </TabList>
           <TabPanels>
             <TabPanel>
+              {/* <MarketList projectStats={sorted1DVolume} /> */}
               <MarketList projectStats={sorted1DVolume} />
             </TabPanel>
             <TabPanel>

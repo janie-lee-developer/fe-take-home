@@ -13,18 +13,23 @@ import Mint from "../components/mint/Mint";
 import {
   GetProjectStatsQuery,
   GetMarketplaceSnapshotsQuery,
+  GetWalletStatsQuery,
 } from "hyperspace-client-js";
 // chakra
 import { Flex, useColorMode, Box } from "@chakra-ui/react";
 
 interface IndexProps {
   dataProjectStats: GetProjectStatsQuery["getProjectStats"];
+  dataPopularStats: GetProjectStatsQuery["getProjectStats"];
   dataSnapShots: GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"]["market_place_snapshots"];
+  dataWalletStats: GetWalletStatsQuery["getWalletStats"];
 }
 
 const Index: FunctionComponent<IndexProps> = ({
   dataProjectStats,
+  dataPopularStats,
   dataSnapShots,
+  dataWalletStats,
 }) => {
   const { colorMode } = useColorMode();
   return (
@@ -43,7 +48,12 @@ const Index: FunctionComponent<IndexProps> = ({
         position={"relative"}
         scrollSnapType={"y mandatory"}
       >
-        <MarketPlace projectStats={dataProjectStats} top6Leaders={undefined} />
+        <MarketPlace
+          projectStats={dataProjectStats}
+          project={undefined}
+          walletStats={dataWalletStats}
+          popularStats={dataPopularStats}
+        />
         <CreateNft snapShots={dataSnapShots} />
         <Mint />
       </Box>
@@ -67,7 +77,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
     pagination_info: {
       page_number: 1,
-      // page_size: 6,
+    },
+  });
+
+  const payloadPopularStats = JSON.stringify({
+    order_by: {
+      field_name: "volume_1day",
+      sort_order: "DESC",
+    },
+    pagination_info: {
+      page_number: 1,
     },
   });
 
@@ -94,10 +113,19 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const urlSnapShots =
     "https://beta.api.solanalysis.com/rest/get-market-place-snapshots";
 
+  const urlWalletStats =
+    "https://beta.api.solanalysis.com/rest/get-wallet-stats";
+
   const resProjectStats = await fetch(urlProjectStats, {
     method: "POST",
     headers,
     body: payloadProjectStats,
+  });
+
+  const resPopularStats = await fetch(urlProjectStats, {
+    method: "POST",
+    headers,
+    body: payloadPopularStats,
   });
 
   const resSnapShots = await fetch(urlSnapShots, {
@@ -106,13 +134,23 @@ export const getServerSideProps: GetServerSideProps = async () => {
     body: payloadSnapShots,
   });
 
+  const resWalletStats = await fetch(urlWalletStats, {
+    method: "POST",
+    headers,
+    body: "{}",
+  });
+
   const dataProjectStats = await resProjectStats.json();
+  const dataPopularStats = await resPopularStats.json();
   const dataSnapShots = await resSnapShots.json();
+  const dataWalletStats = await resWalletStats.json();
 
   return {
     props: {
       dataProjectStats,
+      dataPopularStats,
       dataSnapShots,
+      dataWalletStats,
     },
   };
 };
