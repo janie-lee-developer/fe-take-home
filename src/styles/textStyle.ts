@@ -20,7 +20,7 @@ export const Text = {
     }),
     style3: (props: StyleFunctionProps) => ({
       fontSize: "15px",
-      color: props.colorMode == "dark" ? "white" : "mint",
+      color: props.colorMode == "dark" ? "white" : "teal",
       position: "absolute",
       bottom: "5px",
       width: "150px",
@@ -36,6 +36,13 @@ export const Text = {
     }),
     style5: (props: StyleFunctionProps) => ({
       fontSize: "30px",
+      color: props.colorMode == "dark" ? "white" : "teal",
+      fontWeight: "semibold",
+      ml: "0px",
+      overflow: "hidden",
+    }),
+    style6: (props: StyleFunctionProps) => ({
+      fontSize: "50px",
       color: props.colorMode == "dark" ? "white" : "teal",
       fontWeight: "semibold",
       ml: "0px",

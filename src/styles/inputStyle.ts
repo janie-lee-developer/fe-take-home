@@ -7,8 +7,8 @@ export const Input = {
         border: "2px",
         borderColor:
           props.colorMode == "dark" ? "rgba(37, 99, 235,0.5)" : "teal",
-        width: "50%",
-        mx: "auto",
+        width: "40%",
+        ml: "5%",
         _hover: {
           borderColor: "hyperBlue",
         },

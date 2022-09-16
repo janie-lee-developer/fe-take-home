@@ -22,12 +22,14 @@ import {
   Box,
   Input,
   useStyleConfig,
+  Button,
+  Spacer,
 } from "@chakra-ui/react";
 
 interface IndexProps {
   dataProjectStats: GetProjectStatsQuery["getProjectStats"];
   dataPopularStats: GetProjectStatsQuery["getProjectStats"];
-  dataSnapShots: GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"]["market_place_snapshots"];
+  dataSnapShots: GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"];
   dataWalletStats: GetWalletStatsQuery["getWalletStats"];
 }
 
@@ -51,8 +53,10 @@ const Index: FunctionComponent<IndexProps> = ({
           height={30}
         />
         <Input variant={"outline"} placeholder={"Search"} />
+        <Spacer />
+        <Button variant={"solidCustom"}> Login</Button>
+        <DarkModeSwitch />
       </Flex>
-      <DarkModeSwitch />
       <Box
         w={"100%"}
         h={"100vh"}
@@ -65,8 +69,8 @@ const Index: FunctionComponent<IndexProps> = ({
           walletStats={dataWalletStats}
           popularStats={dataPopularStats}
         />
-        <CreateNft snapShots={dataSnapShots} />
-        <Mint />
+        <CreateNft />
+        <Mint snapShots={dataSnapShots} />
       </Box>
     </Container>
   );
@@ -117,6 +121,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
     pagination_info: {
       page_number: 1,
+      page_size: 10,
     },
   });
 

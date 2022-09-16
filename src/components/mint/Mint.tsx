@@ -1,44 +1,36 @@
 // react
-import {
-  useContext,
-  useEffect,
-  useState,
-  FunctionComponent,
-  HTMLAttributes,
-} from "react";
-
+import { useEffect, useState } from "react";
 // chakra
 import {
-  Grid,
-  GridItem,
-  GridProps,
-  Flex,
   Center,
   Button,
   Box,
-  BoxProps,
-  ListItem,
-  UnorderedList,
   Text,
   Image,
-  CircularProgress,
-  chakra,
   useColorMode,
   useStyleConfig,
   Link,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { ChevronUpIcon } from "@chakra-ui/icons";
 // api
-import { GetProjectStatsQuery } from "hyperspace-client-js";
+import { GetMarketplaceSnapshotsQuery } from "hyperspace-client-js";
 
-interface CreateNftProps {
-  projectStats?: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+interface MintProps {
+  snapShots: GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"];
 }
 
-const CreateNft: FunctionComponent<CreateNftProps> = ({ projectStats }) => {
-  console.log("mint page", projectStats);
+const CreateNft = ({ snapShots }: MintProps) => {
+  console.log("mint page", snapShots);
   const { colorMode } = useColorMode();
   const styles = useStyleConfig("Link");
+  const [stats, setStats] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (snapShots && snapShots.market_place_snapshots) {
+      setStats(snapShots.market_place_snapshots);
+    }
+  });
 
   return (
     <Box
@@ -50,14 +42,29 @@ const CreateNft: FunctionComponent<CreateNftProps> = ({ projectStats }) => {
           : "rgba(172, 230, 207,05) url('/images/light_abstract_art.png')"
       }
     >
-      <Center>Explore NFT/ Projects Launched by Solana</Center>
       <Center>
-        <Button variant="outline">Click me</Button>
+        <Text mx={"auto"} w={"80%"} variant={"style6"} textAlign={"center"}>
+          Explore NFT/ Projects Launched by Solana
+        </Text>
       </Center>
+      <Box my={"20px"} mx={"auto"} w={"30px"}>
+        <Button variant="outline">Buy now!</Button>
+      </Box>
+      <SimpleGrid columns={5} row={2} padding={2} spacing={"30px"}>
+        {stats.map(({ meta_data_img }) => {
+          return (
+            <Box>
+              <Link>
+                <Image __css={styles} src={meta_data_img} alt="img" />
+              </Link>
+            </Box>
+          );
+        })}
+      </SimpleGrid>
       <Link href="#marketPlace" variant={"chevronButton2"}>
         <ChevronUpIcon />
       </Link>
-      <Text variant={"style1"}>To top of the page</Text>
+      <Text variant={"style3"}>To top of the page</Text>
     </Box>
   );
 };

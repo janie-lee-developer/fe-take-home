@@ -1,38 +1,12 @@
 // react
 import { useContext, useEffect, useState, FunctionComponent } from "react";
 // chakra
-import {
-  Grid,
-  GridItem,
-  GridProps,
-  Flex,
-  Center,
-  Button,
-  Box,
-  BoxProps,
-  ListItem,
-  UnorderedList,
-  Text,
-  Image,
-  CircularProgress,
-  chakra,
-  useStyleConfig,
-  Link,
-} from "@chakra-ui/react";
+import { Center, Button, Box, Text, Link, SimpleGrid } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-
-// api
-import { GetMarketplaceSnapshotsQuery } from "hyperspace-client-js";
 // three.js
 import { Website3DDemo } from "../../../public/3dInit";
 
-interface CreateNftProps {
-  snapShots: GetMarketplaceSnapshotsQuery["getMarketPlaceSnapshots"]["market_place_snapshots"];
-}
-
-const CreateNft: FunctionComponent<CreateNftProps> = ({ snapShots }) => {
-  console.log("this is from create NFT page", snapShots);
-
+const CreateNft = () => {
   let _APP: any = null;
   useEffect(() => {
     _APP = new Website3DDemo();
@@ -47,17 +21,30 @@ const CreateNft: FunctionComponent<CreateNftProps> = ({ snapShots }) => {
 
   return (
     <Box id="createNFT" layerStyle={"fullPageScrollEffectSection"}>
-      <Center>Create your NFT: Convert digital files into an NFT</Center>
-      <Center>
-        <Button variant="outline">Click me</Button>
-      </Center>
-      <Center
-        id="model"
-        height={"400px"}
-        width={"600px"}
-        overflow={"hidden"}
-        margin={"0 auto"}
-      ></Center>
+      <SimpleGrid
+        columns={[1, null, 2]}
+        padding={["0", null, null, "3%"]}
+        spacing={"30px"}
+        h={"90%"}
+      >
+        <Center
+          id="model"
+          width={"100%"}
+          overflow={"hidden"}
+          margin={"0 auto"}
+        ></Center>
+        <Box>
+          <Center mt={"30px"}>
+            <Text variant={"style6"}>
+              Create your NFT: Convert digital files into an NFT
+            </Text>
+          </Center>
+          <Box mt={"30px"}>
+            <Button variant="outline">Launch now!</Button>
+          </Box>
+        </Box>
+      </SimpleGrid>
+
       <Link href="#mintNFT" variant={"chevronButton"}>
         <ChevronDownIcon />
       </Link>
