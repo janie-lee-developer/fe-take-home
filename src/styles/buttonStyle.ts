@@ -19,5 +19,3 @@ export const ButtonStyles = {
   },
   defautProps: {},
 };
-
-//<Button variant='outline'></Button>

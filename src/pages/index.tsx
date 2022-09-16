@@ -4,7 +4,8 @@ import { GetServerSideProps } from "next";
 // components
 import { Container } from "../components/Container";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
-import HypeLogo from "../components/HypeLogo";
+// import HypeLogo from "../components/HypeLogo";
+import HypeLogo from "../components/HypeLogo_gradient";
 import MarketPlace from "../components/market-place/MarketPlace";
 import CreateNft from "../components/create-nft/CreateNft";
 import Mint from "../components/mint/Mint";
@@ -35,7 +36,11 @@ const Index: FunctionComponent<IndexProps> = ({
     <Container height="100vh">
       <Flex w={"100%"} h={"80px"} alignItems={"center"} px={4}>
         <HypeLogo
-          fillColor={colorMode === "dark" ? "white" : "black"}
+          fillColor={
+            colorMode === "dark"
+              ? "url(#logo-gradient-dark)"
+              : "url(#logo-gradient-light)"
+          }
           height={30}
         />
       </Flex>

@@ -9,7 +9,10 @@ export const TabsStyles = {
           props.colorMode == "dark"
             ? "rgba(0,0,0,0.2)"
             : "rgba(255,255,255,0.5)",
-        borderColor: "transparent",
+        borderColor:
+          props.colorMode == "dark"
+            ? "rgba(49, 69, 112, 0.2)"
+            : "rgba(255,255,255,0.2)",
         borderWidth: "0px 0px 3px 0px",
         fontWeight: "semibold",
         paddingY: "3px",
@@ -25,5 +28,3 @@ export const TabsStyles = {
     }),
   },
 };
-
-//

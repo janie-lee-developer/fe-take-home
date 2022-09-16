@@ -2,7 +2,7 @@ import { FC } from "react";
 
 type SvgProps = {
   fillColor?: string;
-  width?: number;
+  width?: string;
   height?: number;
   onClick?: () => void;
 };
@@ -18,21 +18,52 @@ const HypeLogo: FC<SvgProps> = ({ fillColor, width, height, onClick }) => {
       onClick={() => onClick && onClick()}
     >
       <defs>
-        <linearGradient id="logo-gradient" x1="50%" y1="0%" x2="50%" y2="100%">
-          <stop offset="0%" stop-color="#7A5FFF">
+        <linearGradient
+          id="logo-gradient-dark"
+          x1="50%"
+          y1="0%"
+          x2="50%"
+          y2="100%"
+        >
+          <stop offset="0%" stop-color="#87a5ed">
             <animate
               attributeName="stop-color"
-              values="#7A5FFF; #01FF89; #7A5FFF"
-              dur="4s"
+              values="#87a5ed; #004fff; #87a5ed"
+              dur="2s"
               repeatCount="indefinite"
             ></animate>
           </stop>
 
-          <stop offset="100%" stop-color="#01FF89">
+          <stop offset="100%" stop-color="#004fff">
             <animate
               attributeName="stop-color"
-              values="#01FF89; #7A5FFF; #01FF89"
-              dur="4s"
+              values="#004fff; #87a5ed; #004fff"
+              dur="2s"
+              repeatCount="indefinite"
+            ></animate>
+          </stop>
+        </linearGradient>
+        <linearGradient
+          id="logo-gradient-light"
+          x1="50%"
+          y1="0%"
+          x2="50%"
+          y2="100%"
+        >
+          <stop offset="0%" stop-color="#03947e">
+            <animate
+              attributeName="stop-color"
+              values="#03947e; #29302f; #03947e"
+              dur="2s"
+              repeatCount="indefinite"
+            ></animate>
+          </stop>
+
+          <stop offset="100%" stop-color="#29302f">
+            <animate
+              attributeName="stop-color"
+              values="#29302f; #03947e; #29302f"
+              dur="2s"
               repeatCount="indefinite"
             ></animate>
           </stop>
