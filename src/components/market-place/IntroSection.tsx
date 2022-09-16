@@ -11,26 +11,28 @@ import {
   Box,
   Text,
   Image,
+  Heading,
   useColorMode,
 } from "@chakra-ui/react";
 //component
-import HypeLogo from "../HypeLogo";
-
+// import HypeLogo from "../HypeLogo";
+import HypeLogo from "../HypeLogo_gradient";
 
 const Intro = () => {
-    const { colorMode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   return (
     <Box>
-        <Center>
+      <Center>
         <HypeLogo
-            fillColor={colorMode === "dark" ? "white" : "black"}
-            height={30}
-            />
-        </Center>
-        <Center>
-            <Button variant="outline">Click me</Button>
-        </Center>
+          fillColor={colorMode === "dark" ? "url(#logo-gradient)" : "black"}
+          height={100}
+        />
+        {/* <Heading>hyperspace</Heading> */}
+      </Center>
+      <Center>
+        <Button variant="outline">Click me</Button>
+      </Center>
     </Box>
   );
 };
