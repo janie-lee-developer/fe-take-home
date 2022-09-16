@@ -48,6 +48,7 @@ const MarketPlace = ({
           : "rgba(255,255,255,0.7) url('/images/light_galaxy_1.png')"
       }
       layerStyle={"fullPageScrollEffectSection"}
+      overflow={"hidden"}
     >
       <SimpleGrid
         columns={[1, null, 2]}

@@ -58,11 +58,7 @@ const Intro = () => {
           </Container>
         </Heading>
       </Box>
-      <SimpleGrid
-        columns={3}
-        // padding={["0", null, null, "3%"]}
-        spacing={"15px"}
-      >
+      <SimpleGrid columns={3} px={["0", null, null, "3%"]} spacing={"15px"}>
         <Box>
           <Link>
             <Image
