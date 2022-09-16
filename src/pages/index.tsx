@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 // next
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 // components
 import { Container } from "../components/Container";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
@@ -50,7 +49,6 @@ const Index: FunctionComponent<IndexProps> = ({
       >
         <MarketPlace
           projectStats={dataProjectStats}
-          project={undefined}
           walletStats={dataWalletStats}
           popularStats={dataPopularStats}
         />
@@ -77,6 +75,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
     pagination_info: {
       page_number: 1,
+      page_size: 6,
     },
   });
 
@@ -87,6 +86,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
     pagination_info: {
       page_number: 1,
+      page_size: 6,
     },
   });
 
@@ -104,6 +104,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
     pagination_info: {
       page_number: 1,
+    },
+  });
+
+  const payloadWalletStats = JSON.stringify({
+    order_by: {
+      field_name: "rank",
+      sort_order: "ASC",
+    },
+    pagination_info: {
+      page_number: 1,
+      page_size: 6,
     },
   });
 
@@ -137,7 +148,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const resWalletStats = await fetch(urlWalletStats, {
     method: "POST",
     headers,
-    body: "{}",
+    body: payloadWalletStats,
   });
 
   const dataProjectStats = await resProjectStats.json();

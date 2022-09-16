@@ -1,6 +1,7 @@
 import { useEffect, useState, FunctionComponent } from "react";
 // components
 import MarketList from "./MarketList";
+import WalletList from "./WalletList";
 import IntroSection from "./IntroSection";
 // chakra
 import {
@@ -12,7 +13,6 @@ import {
   TabPanel,
   Tab,
   useColorMode,
-  useStyleConfig,
   Link,
   Text,
 } from "@chakra-ui/react";
@@ -23,17 +23,11 @@ import {
   GetProjectStatsQuery,
   GetWalletStatsQuery,
 } from "hyperspace-client-js/dist/sdk";
-import { ProjectStat } from "hyperspace-client-js/dist/sdk";
 
 interface MarketPlaceProps {
   projectStats: GetProjectStatsOutput;
-  project: GetProjectStatsQuery["getProjectStats"]["project_stats"];
   walletStats: GetWalletStatsQuery["getWalletStats"];
   popularStats: GetProjectStatsQuery["getProjectStats"];
-}
-
-interface sortProps {
-  sorted: GetProjectStatsQuery["getProjectStats"]["project_stats"];
 }
 
 const MarketPlace = ({
@@ -42,37 +36,6 @@ const MarketPlace = ({
   popularStats,
 }: MarketPlaceProps) => {
   const { colorMode } = useColorMode();
-  const [top6LeaderBoard, setTop6LeaderBoard] = useState<
-    MarketPlaceProps["project"]
-  >([]);
-  // const [sorted1DVolume, setsorted1DVolume] = useState<
-  //   MarketPlaceProps["project"]
-  // >([]);
-  const [sorted1DVolume, setsorted1DVolume] = useState<
-    MarketPlaceProps["project"]
-  >([]);
-  console.log("market place page return: ", projectStats);
-  console.log("walleeettttt", walletStats);
-  useEffect(() => {
-    if (projectStats?.project_stats) {
-      setTop6LeaderBoard(projectStats.project_stats.slice(0, 6));
-
-      // const stats: sortProps["sorted"] = projectStats.project_stats;
-      // if (stats && stats[0]) {
-      //   const sorted = stats
-      //     .sort((a, b) => {
-      //       if (a.volume_1day && b.volume_1day) {
-      //         return b.volume_1day - a.volume_1day;
-      //       }
-      //       return 0;
-      //     })
-      //     .slice(0, 6);
-      //   setsorted1DVolume(sorted);
-      // }
-
-      setsorted1DVolume(popularStats.project_stats?.slice(0, 6));
-    }
-  }, []);
 
   return (
     <Box
@@ -90,7 +53,12 @@ const MarketPlace = ({
         spacing={"15px"}
         h={"90%"}
       >
-        <Tabs align={"center"} isFitted={true} variant={"enclosed-colored"}>
+        <Tabs
+          size={["sm", "md"]}
+          align={"center"}
+          isFitted={true}
+          variant={"enclosed-colored"}
+        >
           <TabList>
             <Tab>Popular Collection</Tab>
             <Tab>NFT Leaderboard</Tab>
@@ -99,12 +67,14 @@ const MarketPlace = ({
           <TabPanels>
             <TabPanel>
               {/* <MarketList projectStats={sorted1DVolume} /> */}
-              <MarketList projectStats={sorted1DVolume} />
+              <MarketList projectStats={popularStats.project_stats} />
             </TabPanel>
             <TabPanel>
-              <MarketList projectStats={top6LeaderBoard} />
+              <MarketList projectStats={projectStats.project_stats} />
             </TabPanel>
-            <TabPanel>TBA</TabPanel>
+            <TabPanel>
+              <WalletList walletStats={walletStats.wallet_stats} />
+            </TabPanel>
           </TabPanels>
         </Tabs>
         <IntroSection />
