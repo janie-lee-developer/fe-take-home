@@ -56,8 +56,8 @@ const CreateNft: FunctionComponent<CreateNftProps> = ({ projectStats }) => {
       </Center>
       <Link href="#marketPlace" variant={"chevronButton2"}>
         <ChevronUpIcon />
-        <Text variant={"style1"}>To top of the page</Text>
       </Link>
+      <Text variant={"style1"}>To top of the page</Text>
     </Box>
   );
 };

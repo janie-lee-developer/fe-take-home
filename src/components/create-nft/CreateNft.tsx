@@ -61,6 +61,7 @@ const CreateNft: FunctionComponent<CreateNftProps> = ({ snapShots }) => {
       <Link href="#mintNFT" variant={"chevronButton"}>
         <ChevronDownIcon />
       </Link>
+      <Text variant={"style3"}>To Next Page</Text>
     </Box>
   );
 };

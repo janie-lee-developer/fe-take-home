@@ -15,6 +15,7 @@ import {
   useColorMode,
   useStyleConfig,
   Link,
+  Text,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
@@ -57,9 +58,10 @@ const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
         </Tabs>
         <IntroSection />
       </SimpleGrid>
-      <Link href="#createNFT" variant={"chevronButton"}>
+      <Link href="#createNFT" variant={"chevronButton2"}>
         <ChevronDownIcon />
       </Link>
+      <Text variant={"style2"}>To Next Page</Text>
     </Box>
   );
 };
