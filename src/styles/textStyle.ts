@@ -12,7 +12,7 @@ export const Text = {
     }),
     style2: (props: StyleFunctionProps) => ({
       fontSize: "15px",
-      color: props.colorMode == "dark" ? "white" : "bgWhite2",
+      color: props.colorMode == "dark" ? "white" : "teal",
       position: "absolute",
       bottom: "5px",
       width: "150px",
@@ -25,6 +25,21 @@ export const Text = {
       bottom: "5px",
       width: "150px",
       left: "48.5%",
+    }),
+    style4: (props: StyleFunctionProps) => ({
+      fontSize: "30px",
+      color: props.colorMode == "dark" ? "white" : "teal",
+      fontWeight: "semibold",
+      width: "90%",
+      margin: "auto",
+      textAlign: "center",
+    }),
+    style5: (props: StyleFunctionProps) => ({
+      fontSize: "30px",
+      color: props.colorMode == "dark" ? "white" : "teal",
+      fontWeight: "semibold",
+      ml: "0px",
+      overflow: "hidden",
     }),
   },
 };

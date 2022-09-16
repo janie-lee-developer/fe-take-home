@@ -1,6 +1,5 @@
 import type { StyleFunctionProps } from "@chakra-ui/styled-system";
 import { keyframes } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 
 const animationKeyframes = keyframes`
 70% { transform:translateY(0%); }
@@ -32,7 +31,7 @@ export const Link = {
       left: "48%",
       bottom: "-19px",
       fontSize: "100px",
-      color: props.colorMode == "dark" ? "hyperBlue" : "bgWhite2",
+      color: props.colorMode == "dark" ? "hyperBlue" : "teal",
       animation,
     }),
   },

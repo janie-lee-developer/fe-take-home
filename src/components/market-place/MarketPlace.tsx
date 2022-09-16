@@ -15,6 +15,8 @@ import {
   useColorMode,
   Link,
   Text,
+  Center,
+  Button,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 // api
@@ -50,33 +52,38 @@ const MarketPlace = ({
       <SimpleGrid
         columns={[1, null, 2]}
         padding={["0", null, null, "3%"]}
-        spacing={"15px"}
+        spacing={"30px"}
         h={"90%"}
       >
-        <Tabs
-          size={["sm", "md"]}
-          align={"center"}
-          isFitted={true}
-          variant={"enclosed-colored"}
-        >
-          <TabList>
-            <Tab>Popular Collection</Tab>
-            <Tab>NFT Leaderboard</Tab>
-            <Tab>Top Wallets</Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              {/* <MarketList projectStats={sorted1DVolume} /> */}
-              <MarketList projectStats={popularStats.project_stats} />
-            </TabPanel>
-            <TabPanel>
-              <MarketList projectStats={projectStats.project_stats} />
-            </TabPanel>
-            <TabPanel>
-              <WalletList walletStats={walletStats.wallet_stats} />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+        <Box>
+          <Tabs
+            size={["sm", "md"]}
+            align={"center"}
+            isFitted={true}
+            variant={"enclosed-colored"}
+          >
+            <TabList>
+              <Tab>Popular Collection</Tab>
+              <Tab>NFT Leaderboard</Tab>
+              <Tab>Top Wallets</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                {/* <MarketList projectStats={sorted1DVolume} /> */}
+                <MarketList projectStats={popularStats.project_stats} />
+              </TabPanel>
+              <TabPanel>
+                <MarketList projectStats={projectStats.project_stats} />
+              </TabPanel>
+              <TabPanel>
+                <WalletList walletStats={walletStats.wallet_stats} />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+          <Center mt={"10px"}>
+            <Button variant="outline">Trade Now!</Button>
+          </Center>
+        </Box>
         <IntroSection />
       </SimpleGrid>
       <Link href="#createNFT" variant={"chevronButton2"}>

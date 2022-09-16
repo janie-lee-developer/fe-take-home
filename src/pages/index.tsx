@@ -4,7 +4,8 @@ import { GetServerSideProps } from "next";
 // components
 import { Container } from "../components/Container";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
-import HypeLogo from "../components/HypeLogo";
+// import HypeLogo from "../components/HypeLogo";
+import HypeLogo from "../components/HypeLogo_gradient";
 import MarketPlace from "../components/market-place/MarketPlace";
 import CreateNft from "../components/create-nft/CreateNft";
 import Mint from "../components/mint/Mint";
@@ -15,7 +16,13 @@ import {
   GetWalletStatsQuery,
 } from "hyperspace-client-js";
 // chakra
-import { Flex, useColorMode, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  useColorMode,
+  Box,
+  Input,
+  useStyleConfig,
+} from "@chakra-ui/react";
 
 interface IndexProps {
   dataProjectStats: GetProjectStatsQuery["getProjectStats"];
@@ -31,13 +38,19 @@ const Index: FunctionComponent<IndexProps> = ({
   dataWalletStats,
 }) => {
   const { colorMode } = useColorMode();
+  const styles = useStyleConfig("Input");
   return (
     <Container height="100vh">
       <Flex w={"100%"} h={"80px"} alignItems={"center"} px={4}>
         <HypeLogo
-          fillColor={colorMode === "dark" ? "white" : "black"}
+          fillColor={
+            colorMode === "dark"
+              ? "url(#logo-gradient-dark)"
+              : "url(#logo-gradient-light)"
+          }
           height={30}
         />
+        <Input variant={"outline"} placeholder={"Search"} />
       </Flex>
       <DarkModeSwitch />
       <Box
