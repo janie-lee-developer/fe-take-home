@@ -15,8 +15,7 @@ import {
   GetMarketplaceSnapshotsQuery,
 } from "hyperspace-client-js";
 // chakra
-import { Flex, useColorMode, Box, useStyleConfig } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Flex, useColorMode, Box } from "@chakra-ui/react";
 
 interface IndexProps {
   dataProjectStats: GetProjectStatsQuery["getProjectStats"];
@@ -28,19 +27,6 @@ const Index: FunctionComponent<IndexProps> = ({
   dataSnapShots,
 }) => {
   const { colorMode } = useColorMode();
-  const styles = useStyleConfig("DownChevron");
-
-  const handleChevronDown = () => {
-    console.log("this is height", window.innerHeight);
-
-    // window.scrollBy(0, window.innerHeight + 500);
-    // window.scrollBy({
-    //   top: 500,
-    //   left: 100,
-    //   behavior: "smooth",
-    // });
-  };
-
   return (
     <Container height="100vh">
       <Flex w={"100%"} h={"80px"} alignItems={"center"} px={4}>
@@ -57,18 +43,10 @@ const Index: FunctionComponent<IndexProps> = ({
         position={"relative"}
         scrollSnapType={"y mandatory"}
       >
-        <MarketPlace projectStats={dataProjectStats} />
+        <MarketPlace projectStats={dataProjectStats} top6Leaders={undefined} />
         <CreateNft snapShots={dataSnapShots} />
         <Mint />
       </Box>
-      {/* <ChevronDownIcon
-        __css={styles}
-        onClick={handleChevronDown}
-        id="chevronDown"
-      /> */}
-      {/* <a href="#mintNFT">
-        <ChevronDownIcon __css={styles} id="chevronDown" />
-      </a> */}
     </Container>
   );
 };
@@ -89,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
     pagination_info: {
       page_number: 1,
-      page_size: 6,
+      // page_size: 6,
     },
   });
 
