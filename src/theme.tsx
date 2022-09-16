@@ -6,6 +6,8 @@ import { Link } from "./styles/chevronButtonStyle";
 import { Text } from "./styles/textStyle";
 import { Container } from "./styles/containerStyle";
 import { Heading } from "./styles/headingStyle";
+import { Image } from "./styles/imageStyle";
+import { Input } from "./styles/inputStyle";
 
 const fonts = { mono: `'Menlo', monospace` };
 
@@ -56,6 +58,8 @@ const CustomTheme = extendTheme({
     Text,
     Container,
     Heading,
+    Image,
+    Input,
   },
   fonts,
   layerStyles: {

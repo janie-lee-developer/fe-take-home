@@ -16,7 +16,13 @@ import {
   GetWalletStatsQuery,
 } from "hyperspace-client-js";
 // chakra
-import { Flex, useColorMode, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  useColorMode,
+  Box,
+  Input,
+  useStyleConfig,
+} from "@chakra-ui/react";
 
 interface IndexProps {
   dataProjectStats: GetProjectStatsQuery["getProjectStats"];
@@ -32,6 +38,7 @@ const Index: FunctionComponent<IndexProps> = ({
   dataWalletStats,
 }) => {
   const { colorMode } = useColorMode();
+  const styles = useStyleConfig("Input");
   return (
     <Container height="100vh">
       <Flex w={"100%"} h={"80px"} alignItems={"center"} px={4}>
@@ -43,6 +50,7 @@ const Index: FunctionComponent<IndexProps> = ({
           }
           height={30}
         />
+        <Input variant={"outline"} placeholder={"Search"} />
       </Flex>
       <DarkModeSwitch />
       <Box

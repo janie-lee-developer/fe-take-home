@@ -7,11 +7,12 @@ export const ButtonStyles = {
     outline: (props: StyleFunctionProps) => ({
       bg: "transparent",
       border: "1.5px solid",
-      borderColor: props.colorMode == "dark" ? "white" : "black",
-      color: props.colorMode == "dark" ? "white" : "black",
+      borderColor: props.colorMode == "dark" ? "white" : "teal",
+      color: props.colorMode == "dark" ? "white" : "teal",
       _hover: {
-        bg: props.colorMode == "dark" ? "white" : "black",
-        color: props.colorMode == "dark" ? "black" : "white",
+        bg: props.colorMode == "dark" ? "white" : "mint",
+        color: props.colorMode == "dark" ? "black" : "teal",
+        borderColor: "transparent",
         boxShadow: "sm",
         transform: "scale(1.02)",
       },

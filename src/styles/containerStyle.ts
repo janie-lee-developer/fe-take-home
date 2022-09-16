@@ -83,33 +83,13 @@ const animationKeyframes = keyframes`
   }
 `;
 const animation = `${animationKeyframes} 10s ease-in-out infinite`;
-//openclose 5s ease-in-out infinite;
+
 export const Container = {
   variants: {
     highlight: (props: StyleFunctionProps) => ({
-      //   width: "100%",
-      //   backgroundColor:
-      //     props.colorMode == "dark" ? "white" : "rgba(255,255,255,0.4)",
-
-      //   color: "#333",
-      //   display: "block",
-      //   fontWeight: "600",
-      //   overflow: "hidden",
-      //   width: "230px",
       position: "absolute",
       px: "0px",
-      //   ml: "10px",
-      //   left: "320px",
-      //   top: "-45px",
-      //   left: "10%",
       top: "0px",
-      //   textIndent: "7px",
-      //   overflow: "hidden",
-      //   textAlign: "center",
-      //   width: "50px",
-      //   width: "100px",
-      //   height: "40px",
-
       animation,
     }),
   },

@@ -31,7 +31,7 @@ export const Link = {
       left: "48%",
       bottom: "-19px",
       fontSize: "100px",
-      color: props.colorMode == "dark" ? "hyperBlue" : "bgWhite2",
+      color: props.colorMode == "dark" ? "hyperBlue" : "teal",
       animation,
     }),
   },
