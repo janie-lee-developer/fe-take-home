@@ -16,7 +16,11 @@ import {
   Image,
   CircularProgress,
   chakra,
+  useStyleConfig,
+  Link,
 } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+
 // api
 import { GetMarketplaceSnapshotsQuery } from "hyperspace-client-js";
 // three.js
@@ -27,7 +31,6 @@ interface CreateNftProps {
 }
 
 const CreateNft: FunctionComponent<CreateNftProps> = ({ snapShots }) => {
-  const [loading, setLoading] = useState(true);
   console.log("this is from create NFT page", snapShots);
 
   let _APP: any = null;
@@ -43,7 +46,7 @@ const CreateNft: FunctionComponent<CreateNftProps> = ({ snapShots }) => {
   }, []);
 
   return (
-    <Box layerStyle={"fullPageScrollEffectSection"}>
+    <Box id="createNFT" layerStyle={"fullPageScrollEffectSection"}>
       <Center>Create your NFT: Convert digital files into an NFT</Center>
       <Center>
         <Button variant="outline">Click me</Button>
@@ -55,6 +58,10 @@ const CreateNft: FunctionComponent<CreateNftProps> = ({ snapShots }) => {
         overflow={"hidden"}
         margin={"0 auto"}
       ></Center>
+      <Link href="#mintNFT" variant={"chevronButton"}>
+        <ChevronDownIcon />
+      </Link>
+      <Text variant={"style3"}>To Next Page</Text>
     </Box>
   );
 };

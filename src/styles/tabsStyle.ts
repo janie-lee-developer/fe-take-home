@@ -4,12 +4,13 @@ export const TabsStyles = {
   variants: {
     "enclosed-colored": (props: StyleFunctionProps) => ({
       tab: {
+        minHeight: "55px",
         bg:
           props.colorMode == "dark"
             ? "rgba(0,0,0,0.2)"
             : "rgba(255,255,255,0.5)",
         borderColor: "transparent",
-        borderWidth: "0px 0px 5px 0px",
+        borderWidth: "0px 0px 3px 0px",
         fontWeight: "semibold",
         paddingY: "3px",
         _selected: {

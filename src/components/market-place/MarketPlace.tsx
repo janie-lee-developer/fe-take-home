@@ -1,8 +1,8 @@
+import { useEffect, useState, FunctionComponent } from "react";
 // components
 import MarketList from "./MarketList";
+import WalletList from "./WalletList";
 import IntroSection from "./IntroSection";
-// api
-import { GetProjectStatsOutput } from "hyperspace-client-js/dist/sdk";
 // chakra
 import {
   SimpleGrid,
@@ -13,17 +13,33 @@ import {
   TabPanel,
   Tab,
   useColorMode,
+  Link,
+  Text,
 } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+// api
+import {
+  GetProjectStatsOutput,
+  GetProjectStatsQuery,
+  GetWalletStatsQuery,
+} from "hyperspace-client-js/dist/sdk";
 
 interface MarketPlaceProps {
   projectStats: GetProjectStatsOutput;
+  walletStats: GetWalletStatsQuery["getWalletStats"];
+  popularStats: GetProjectStatsQuery["getProjectStats"];
 }
 
-const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
+const MarketPlace = ({
+  projectStats,
+  walletStats,
+  popularStats,
+}: MarketPlaceProps) => {
   const { colorMode } = useColorMode();
 
   return (
     <Box
+      id="marketPlace"
       bg={
         colorMode == "dark"
           ? "rgba(0,0,0,0.5) url('/images/dark_galaxy_1.png')"
@@ -37,7 +53,12 @@ const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
         spacing={"15px"}
         h={"90%"}
       >
-        <Tabs align={"center"} isFitted={true} variant={"enclosed-colored"}>
+        <Tabs
+          size={["sm", "md"]}
+          align={"center"}
+          isFitted={true}
+          variant={"enclosed-colored"}
+        >
           <TabList>
             <Tab>Popular Collection</Tab>
             <Tab>NFT Leaderboard</Tab>
@@ -45,14 +66,23 @@ const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <MarketList projectStats={projectStats} />
+              {/* <MarketList projectStats={sorted1DVolume} /> */}
+              <MarketList projectStats={popularStats.project_stats} />
             </TabPanel>
-            <TabPanel>TBA</TabPanel>
-            <TabPanel>TBA</TabPanel>
+            <TabPanel>
+              <MarketList projectStats={projectStats.project_stats} />
+            </TabPanel>
+            <TabPanel>
+              <WalletList walletStats={walletStats.wallet_stats} />
+            </TabPanel>
           </TabPanels>
         </Tabs>
         <IntroSection />
       </SimpleGrid>
+      <Link href="#createNFT" variant={"chevronButton2"}>
+        <ChevronDownIcon />
+      </Link>
+      <Text variant={"style2"}>To Next Page</Text>
     </Box>
   );
 };

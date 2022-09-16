@@ -1,5 +1,5 @@
 // react
-import { useEffect, useState } from "react";
+import { useEffect, useState, FunctionComponent } from "react";
 // chakra
 import {
   Table,
@@ -16,23 +16,22 @@ import {
   Stat,
   StatNumber,
   StatHelpText,
-  StatArrow,
 } from "@chakra-ui/react";
 // api
-import { GetProjectStatsQuery } from "hyperspace-client-js/dist/sdk";
+import { GetWalletStatsQuery } from "hyperspace-client-js/dist/sdk";
 
 interface MarketListProps {
-  projectStats: GetProjectStatsQuery["getProjectStats"]["project_stats"];
+  walletStats: GetWalletStatsQuery["getWalletStats"]["wallet_stats"];
 }
 
-const MarketList = ({ projectStats }: MarketListProps) => {
+const WalletList = ({ walletStats }: MarketListProps) => {
   const { colorMode } = useColorMode();
   const [stats, setStats] = useState<any[]>([]);
   const styles = useStyleConfig("ThumbNail");
 
   useEffect(() => {
-    if (projectStats && projectStats[0]) {
-      setStats(projectStats);
+    if (walletStats && walletStats[0]) {
+      setStats(walletStats);
     }
   });
 
@@ -48,10 +47,10 @@ const MarketList = ({ projectStats }: MarketListProps) => {
           {stats.map(
             (
               {
-                floor_price,
-                volume_1day,
-                volume_1day_change,
-                project: { img_url, display_name },
+                address,
+                portfolio_value,
+                num_bought,
+                max_purchase_item: { metadata_img, name },
               },
               inx
             ) => {
@@ -60,15 +59,13 @@ const MarketList = ({ projectStats }: MarketListProps) => {
                   <Td p={"16px 0 16px 20px"}>
                     <Text fontWeight={"semibold"}>{inx + 1}</Text>
                   </Td>
-                  <Td px={"0px 10px"}>
+                  <Td>
                     <Flex>
                       <Box w={"50px"} h={"50px"}>
                         <Image
-                          src={img_url}
-                          fallbackSrc={
-                            "https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg"
-                          }
-                          alt={display_name ?? "n/a"}
+                          src={"images/no_img.png"}
+                          fallbackSrc={"images/no_img.png"}
+                          alt={address ?? "n/a"}
                           __css={styles}
                         />
                       </Box>
@@ -78,15 +75,15 @@ const MarketList = ({ projectStats }: MarketListProps) => {
                         alignItems={"flex-start"}
                         justifyContent={"center"}
                         pl={"10px"}
-                        maxW={["125px", "100%", "150px", "100%"]}
+                        maxW={["125px", "250px", "150px", "200px"]}
                         textOverflow={"ellipsis"}
                       >
-                        <p style={{ fontWeight: "bold" }}>{display_name}</p>
+                        <p style={{ fontWeight: "bold" }}>{address}</p>
                         <Text
                           fontWeight={"semibold"}
                           color={colorMode == "dark" ? "cloud" : "charcoal"}
                         >
-                          Floor: {floor_price}
+                          #NFTs Bought: {num_bought}
                         </Text>
                       </Flex>
                     </Flex>
@@ -95,16 +92,9 @@ const MarketList = ({ projectStats }: MarketListProps) => {
                     <Flex justifyContent={"flex-end"}>
                       <Stat>
                         <StatNumber fontSize={"md"}>
-                          ${volume_1day.toLocaleString()}
+                          {portfolio_value.toLocaleString()} SOL
                         </StatNumber>
-                        <StatHelpText mb={"0"}>
-                          <StatArrow
-                            type={
-                              volume_1day_change >= 0 ? "increase" : "decrease"
-                            }
-                          />
-                          {(volume_1day_change * 100).toFixed(1)} %
-                        </StatHelpText>
+                        <StatHelpText mb={"0"}></StatHelpText>
                       </Stat>
                     </Flex>
                   </Td>
@@ -118,4 +108,4 @@ const MarketList = ({ projectStats }: MarketListProps) => {
   );
 };
 
-export default MarketList;
+export default WalletList;
