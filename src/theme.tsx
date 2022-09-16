@@ -2,6 +2,8 @@ import { extendTheme, theme, type ThemeConfig } from "@chakra-ui/react";
 import { ButtonStyles as Button } from "./styles/buttonStyle";
 import { ThumbNail } from "./styles/thumbNailStyle";
 import { TabsStyles as Tabs } from "./styles/tabsStyle";
+import { Link } from "./styles/chevronButtonStyle";
+import { Text } from "./styles/textStyle";
 
 const fonts = { mono: `'Menlo', monospace` };
 
@@ -40,12 +42,15 @@ const CustomTheme = extendTheme({
     bgWhite:
       "linear-gradient(180deg, rgba(152, 164, 230, 0.2) 0%, rgba(217, 217, 255, 0) 31.09%),linear-gradient(0deg, #F8F8FC, #F8F8FC)",
     bgBlack: "linear-gradient(180deg, #141624 0%, #090A10 1%)",
+    bgWhite2: "#e8eaf9",
   },
   config,
   components: {
     Button,
     ThumbNail,
     Tabs,
+    Link,
+    Text,
   },
   fonts,
   layerStyles: {

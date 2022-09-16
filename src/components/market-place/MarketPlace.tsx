@@ -13,7 +13,10 @@ import {
   TabPanel,
   Tab,
   useColorMode,
+  useStyleConfig,
+  Link,
 } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 interface MarketPlaceProps {
   projectStats: GetProjectStatsOutput;
@@ -24,6 +27,7 @@ const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
 
   return (
     <Box
+      id="marketPlace"
       bg={
         colorMode == "dark"
           ? "rgba(0,0,0,0.5) url('/images/dark_galaxy_1.png')"
@@ -53,6 +57,9 @@ const MarketPlace = ({ projectStats }: MarketPlaceProps) => {
         </Tabs>
         <IntroSection />
       </SimpleGrid>
+      <Link href="#createNFT" variant={"chevronButton"}>
+        <ChevronDownIcon />
+      </Link>
     </Box>
   );
 };
