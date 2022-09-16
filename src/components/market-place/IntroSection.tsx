@@ -14,6 +14,7 @@ import {
   Heading,
   useColorMode,
   color,
+  Container,
 } from "@chakra-ui/react";
 //component
 // import HypeLogo from "../HypeLogo";
@@ -33,8 +34,35 @@ const Intro = () => {
           }
           width={"80%"}
         />
-        {/* <Heading>hyperspace</Heading> */}
       </Center>
+      <Box mt={"30px"} width={"80%"} margin={"10px auto"}>
+        <Text variant={"style4"}>The most powerful NFT</Text>
+        <Heading variant="intro">
+          <Container variant={"highlight"}>
+            <Box overflow={"hidden"} height={"45px"}>
+              <Text variant={"style5"} color="red">
+                marketplace
+              </Text>
+            </Box>
+            <Box overflow={"hidden"} height={"45px"}>
+              <Text variant={"style5"} color="orange">
+                launchpad
+              </Text>
+            </Box>
+            <Box overflow={"hidden"} height={"45px"}>
+              <Text variant={"style5"} color="yellow">
+                wallet tracker
+              </Text>
+            </Box>
+            <Box overflow={"hidden"} height={"45px"}>
+              <Text variant={"style5"}>leaderboards</Text>
+            </Box>
+            <Box overflow={"hidden"} height={"45px"}>
+              <Text variant={"style5"}>aggregator</Text>
+            </Box>
+          </Container>
+        </Heading>
+      </Box>
       <Center>{/* <Button variant="outline">Click me</Button> */}</Center>
     </Box>
   );

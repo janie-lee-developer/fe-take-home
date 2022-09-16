@@ -1,6 +1,5 @@
 import type { StyleFunctionProps } from "@chakra-ui/styled-system";
 import { keyframes } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 
 const animationKeyframes = keyframes`
 70% { transform:translateY(0%); }
